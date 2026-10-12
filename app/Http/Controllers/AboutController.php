@@ -8,7 +8,6 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $company = 'Gamey';
-        return view('about', compact('company'));
+        return view('about');
     }
 }
