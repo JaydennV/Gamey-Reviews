@@ -1,5 +1,5 @@
 <x-layout name="Home">
-    <nav class="flex w-full items-center justify-between bg-[#9a8c98] px-6 py-14 h-20 border-b border-black">
+    <nav class="flex w-full items-center justify-between bg-[#9a8c98] px-6 py-14 h-20 border-b border-[#4a4e69]">
         <a href="{{ route('home') }}" class="flex items-center">
             <img
                 src="/images/logo.png"
@@ -19,11 +19,15 @@
           style="background-image: url('{{ asset('images/backgroundimgheader.png') }}')">
         <div class="flex flex-col gap-10 p-6 text-center justify-center text-xl">
             <h1 class="text-2xl font-bold">Join the biggest game reviewing community!</h1>
-            <p class="pb-3">Millions of people have reviewed before you already, get started today and share connect
+            <p class="pb-3">Millions of people have reviewed before you already, get started today and connect
                 with others!</p>
             <div class="flex gap-5 justify-center items-center">
-                <x-navlink href="{{ route('register') }}">Try now!</x-navlink>
-                <x-navlink href="{{ route('login') }}">Log in</x-navlink>
+                <x-navlink class="text-white bg-[#4a4e69] hover:bg-[#3a3e59] px-4 py-2 rounded-md"
+                           href="{{ route('register') }}">Try now!
+                </x-navlink>
+                <x-navlink class="text-white bg-[#4a4e69] hover:bg-[#3a3e59] px-4 py-2 rounded-md"
+                           href="{{ route('login') }}">Log in
+                </x-navlink>
             </div>
         </div>
         <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-8 py-10 sm:grid-cols-2 lg:grid-cols-3">
