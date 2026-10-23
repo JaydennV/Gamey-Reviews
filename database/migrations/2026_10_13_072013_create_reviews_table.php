@@ -15,7 +15,7 @@ return new class extends Migration {
 
             $table->string('title');
             $table->text('text');
-            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('price');
             $table->string('game_name');
             $table->string('genre');

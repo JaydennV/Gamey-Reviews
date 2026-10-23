@@ -12,13 +12,26 @@
         <div class="flex items-center gap-8 text-2xl">
             <x-navlink href="{{ route('home') }}">Home</x-navlink>
             <x-navlink href="{{ route('reviews') }}">Reviews</x-navlink>
-
+            <x-navlink href="{{ route('reviews.user') }}">My Reviews</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
         </div>
     </nav>
+    <div class="pt-5 text-xl flex gap-3 px-6 justify-start">
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews')}}">All reviews</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'RPG'])}}">RPG</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'Adventure'])}}">Adventure</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'Horror'])}}">Horror</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'Action'])}}">Action</a>
+    </div>
     <main
-        class=" mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-2 lg:grid-cols-3"
-    >
+        class=" mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 lg:grid-cols-3">
+
+
         @foreach ($reviews as $review)
             <article
                 class="flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200 hover:-translate-y-2 hover:rotate-1">
@@ -35,9 +48,13 @@
 
                     <p class="text-xl font-semibold text-gray-500"> {{ $review->game_name }}</p>
                 </div>
-                <x-navlink class="mt-2 w-1" href="{{ route('reviews.show', $review->id) }}">Read Review
+                <x-navlink class="mt-2 w-1" href="{{ route('reviews.show', $review->id) }}">Read review
                 </x-navlink>
 
             </article>
-    @endforeach
+        @endforeach
+    </main>
+    @include('partials.footer')
+
 </x-layout>
+

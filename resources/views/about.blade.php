@@ -11,8 +11,13 @@
         <div class="flex items-center gap-8 text-2xl">
             <x-navlink href="{{ route('home') }}">Home</x-navlink>
             <x-navlink href="{{ route('reviews') }}">Reviews</x-navlink>
-
+            <x-navlink href="{{ route('reviews.user') }}">My Reviews</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
         </div>
     </nav>
+    <main>
+
+    </main>
+    @include('partials.footer')
+
 </x-layout>
