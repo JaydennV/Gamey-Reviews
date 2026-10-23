@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.switch input {
+    position: absolute;
+    opacity: 0;
+}
+
+.slider {
+    position: relative;
+    width: 3rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: #999;
+    transition: background 0.2s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s;
+}
+
+input:checked + .slider {
+    background: #4a4e69;
+}
+
+input:checked + .slider::before {
+    transform: translateX(1.4rem);
+}
+
+.status .inactive {
+    display: none;
+}
+
+input:not(:checked) ~ .status .active {
+    display: none;
+}
+
+input:not(:checked) ~ .status .inactive {
+    display: inline;
+}
+
+
+.switch:focus-within .slider {
+    outline: 2px solid #222;
+    outline-offset: 3px;
+}

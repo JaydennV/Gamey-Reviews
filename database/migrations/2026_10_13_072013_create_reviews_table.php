@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('game_name');
             $table->string('genre');
             $table->string('username');
-
+            $table->boolean('is_active')->default(true);
 
             $table->timestamps();
         });

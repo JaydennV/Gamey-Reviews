@@ -1,19 +1,25 @@
 <x-layout class="min-h-screen bg-cover bg-center bg-no-repeat" name="Reviews"
           style="background-image: url('{{ asset('images/backgroundimgheader.png') }}')">
     <nav class="flex w-full items-center justify-between bg-[#9a8c98] px-6 py-14 h-20 border-b border-[#4a4e69]">
-        <a href="{{ route('home') }}" class="flex items-center">
-            <img
-                src="/images/logo.png"
-                alt="Logo"
-                class="h-12 w-auto hover:scale-110 transition-transform duration-200"
-            >
-        </a>
+        <div class="flex items-center gap-4">
+            <a href="{{ route('home') }}" class="flex items-center">
+                <img
+                    src="/images/logo.png"
+                    alt="Logo"
+                    class="h-12 w-auto hover:scale-110 transition-transform duration-200"
+                >
+            </a>
+            @include('partials.navicon')
+        </div>
 
         <div class="flex items-center gap-8 text-2xl">
             <x-navlink href="{{ route('home') }}">Home</x-navlink>
             <x-navlink href="{{ route('reviews') }}">Reviews</x-navlink>
             <x-navlink href="{{ route('reviews.user') }}">My Reviews</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
+            @if($isAdmin)
+                <x-navlink href="{{ route('admin') }}">Dashboard</x-navlink>
+            @endif
         </div>
     </nav>
     <div class="pt-5 text-xl flex gap-3 px-6 justify-start">
@@ -27,6 +33,10 @@
            href="{{route('reviews', ['genre' => 'Horror'])}}">Horror</a>
         <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Action'])}}">Action</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'Strategy'])}}">Strategy</a>
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+           href="{{route('reviews', ['genre' => 'Racing'])}}">Racing</a>
     </div>
     <main
         class=" mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 lg:grid-cols-3">
@@ -57,4 +67,3 @@
     @include('partials.footer')
 
 </x-layout>
-

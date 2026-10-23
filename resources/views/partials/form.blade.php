@@ -27,7 +27,7 @@
 
         <button class="mt-8 bg-[#4a4e69] w-48 text-white py-2 px-4 rounded hover:bg-[#3a3d5c]" for="create-review"
                 type="submit">
-            Create Review
+            Create review
         </button>
     </div>
 </form>

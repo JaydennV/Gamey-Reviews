@@ -8,6 +8,12 @@ class AboutController extends Controller
 {
     public function index()
     {
-        return view('about');
+        if (auth()->check() && auth()->user()->is_admin === true) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
+
+        return view('about', compact('isAdmin'));
     }
 }

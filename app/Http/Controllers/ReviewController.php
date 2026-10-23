@@ -10,13 +10,28 @@ class ReviewController extends Controller
 {
     public function index()
     {
+        if (auth()->check() && auth()->user()->is_admin === true) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
 
         if (request()->has('genre')) {
-            $reviews = Review::where('genre', request('genre'))->get();
+            $reviews = Review::where('genre', request('genre'))->where('is_active', true)->get();
         } else {
-            $reviews = Review::all();
+            $reviews = Review::where('is_active', true)->get();
         }
-        return view('reviews', compact('reviews'));
+        return view('reviews', compact('reviews', 'isAdmin'));
+    }
+
+    public function updateStatus(Request $request, string $id)
+    {
+
+        $review = Review::findOrFail($id);
+        $review->is_active = $request->boolean('is_active');
+        $review->save();
+
+        return back();
     }
 
     public function destroy(string $id)
@@ -27,10 +42,21 @@ class ReviewController extends Controller
         return redirect()->route('reviews.user');
     }
 
+    public function showEditPage(string $id)
+    {
+        $review = auth()->user()->reviews()->find($id);
+        return view('reviews.edit', compact('review'));
+    }
+
     public function showUserReviews()
     {
         $reviews = auth()->user()->reviews;
-        return view('myreviews', compact('reviews'));
+        if (auth()->check() && auth()->user()->is_admin === true) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
+        return view('myreviews', compact('reviews', 'isAdmin'));
     }
 
     public function create()
@@ -57,6 +83,25 @@ class ReviewController extends Controller
         ]);
 
         return redirect()->route('reviews.user');
+    }
+
+    public function updateReview(Request $request, string $id)
+    {
+        Review::where('id', $id)->update([
+            'title' => request('title'),
+            'text' => request('text'),
+            'price' => request('price'),
+            'game_name' => request('game_name'),
+            'genre' => request('genre'),
+        ]);
+        return redirect()->route('reviews.user');
+    }
+
+    public function adminDelete(string $id)
+    {
+        $review = Review::find($id);
+        $review->delete();
+        return redirect()->route('admin');
     }
 
 
