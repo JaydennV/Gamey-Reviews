@@ -30,12 +30,7 @@
             <p class="pb-3">Millions of people have reviewed before you already, get started today and connect
                 with others!</p>
             <div class="flex gap-5 justify-center items-center">
-                <x-navlink class="text-white bg-[#4a4e69] hover:bg-[#3a3e59] px-4 py-2 rounded-md"
-                           href="{{ route('register') }}">Try now!
-                </x-navlink>
-                <x-navlink class="text-white bg-[#4a4e69] hover:bg-[#3a3e59] px-4 py-2 rounded-md"
-                           href="{{ route('login') }}">Log in
-                </x-navlink>
+               
             </div>
         </div>
         <div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-8 py-10 sm:grid-cols-2 lg:grid-cols-3">
