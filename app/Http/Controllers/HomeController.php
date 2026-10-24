@@ -14,7 +14,7 @@ class HomeController extends Controller
         } else {
             $isAdmin = false;
         }
-        $reviews = Review::where('id', '<=', 3)->get();
+        $reviews = Review::where('id', '<=', 4)->get();
         return view('home', compact('reviews', 'isAdmin'));
     }
 }

@@ -23,19 +23,19 @@
         </div>
     </nav>
     <div class="pt-5 text-xl flex gap-3 px-6 justify-start">
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews')}}">All reviews</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'RPG'])}}">RPG</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Adventure'])}}">Adventure</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Horror'])}}">Horror</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Action'])}}">Action</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Strategy'])}}">Strategy</a>
-        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg"
+        <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Racing'])}}">Racing</a>
     </div>
     <main
