@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Action;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\title;
@@ -61,7 +62,12 @@ class ReviewController extends Controller
 
     public function create()
     {
-        return view('reviews.create');
+        if (Action::where('review_clicked_by_user', 3)->exists()) {
+            return view('reviews.create');
+        } else {
+
+            return redirect()->route('home');
+        }
     }
 
     public function showAllReviews()
