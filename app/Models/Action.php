@@ -7,4 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Action extends Model
 {
     //
+    protected $fillable = [
+        'review_clicked_by_user',
+        'user_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

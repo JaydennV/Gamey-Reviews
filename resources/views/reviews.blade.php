@@ -45,12 +45,14 @@
             </button>
         </form>
     </div>
+    @if(isset($errorMessage))
+        <p class="text-xl font-bold text-center pt-8 text-red-500">{{ $errorMessage }}</p>
+    @endif
+    @if(isset($isEmpty))
+        <p class="text-center font-bold pt-8 text-xl text-gray-500">{{ $isEmpty }}</p>
+    @endif
     <main
         class=" mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 lg:grid-cols-3">
-
-        @if(isset($isEmpty))
-            <p class="text-xl text-gray-500">{{ $isEmpty }}</p>
-        @endif
         @foreach ($reviews as $review)
             <article
                 class="animate-appear transition-appear  flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200 hover:-translate-y-2 hover:rotate-1">

@@ -13,7 +13,8 @@ return new class extends Migration {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('review_clicked_by_user');
+            $table->integer('review_clicked_by_user')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

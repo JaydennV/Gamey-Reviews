@@ -9,8 +9,11 @@ use function Laravel\Prompts\title;
 
 class ReviewController extends Controller
 {
+
+
     public function index()
     {
+        $clickCounter = 0;
         if (auth()->check() && auth()->user()->is_admin === true) {
             $isAdmin = true;
         } else {
@@ -22,7 +25,11 @@ class ReviewController extends Controller
         } else {
             $reviews = Review::where('is_active', true)->get();
         }
-        return view('reviews', compact('reviews', 'isAdmin'));
+        return view('reviews', [
+            'reviews' => $reviews,
+            'isAdmin' => $isAdmin,
+            'errorMessage' => session('errorMessage'),
+        ]);
     }
 
     public function updateStatus(Request $request, string $id)
@@ -62,17 +69,27 @@ class ReviewController extends Controller
 
     public function create()
     {
-        if (Action::where('review_clicked_by_user', 3)->exists()) {
-            return view('reviews.create');
-        } else {
+        $action = Action::where('user_id', auth()->id())->first();
 
-            return redirect()->route('home');
+        if ($action && $action->review_clicked_by_user >= 3) {
+            return view('reviews.create');
         }
+
+        return redirect()->route('reviews')
+            ->with('errorMessage', 'You have not clicked enough reviews to perform this action.');
     }
 
     public function showAllReviews()
     {
-        $clickedReview = Review::find(request()->route('id'));
+        $action = Action::firstOrCreate(
+            ['user_id' => auth()->id()],
+            ['review_clicked_by_user' => 0],
+        );
+
+        $action->increment('review_clicked_by_user');
+
+        $clickedReview = Review::findOrFail(request()->route('id'));
+
         return view('reviews.show', compact('clickedReview'));
     }
 

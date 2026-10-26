@@ -28,6 +28,11 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function action()
+    {
+        return $this->hasMany(Action::class);
+    }
+
     protected function casts(): array
     {
         return [
