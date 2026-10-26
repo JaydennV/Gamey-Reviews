@@ -87,14 +87,16 @@ class ReviewController extends Controller
 
     public function updateReview(Request $request, string $id)
     {
-        Review::where('id', $id)->update([
-            'title' => request('title'),
-            'text' => request('text'),
-            'price' => request('price'),
-            'game_name' => request('game_name'),
-            'genre' => request('genre'),
-        ]);
-        return redirect()->route('reviews.user');
+        if (auth()->user()->reviews()->find($id)) {
+            Review::where('id', $id)->update([
+                'title' => request('title'),
+                'text' => request('text'),
+                'price' => request('price'),
+                'game_name' => request('game_name'),
+                'genre' => request('genre'),
+            ]);
+            return redirect()->route('reviews.user');
+        }
     }
 
     public function adminDelete(string $id)
@@ -102,6 +104,27 @@ class ReviewController extends Controller
         $review = Review::find($id);
         $review->delete();
         return redirect()->route('admin');
+    }
+
+    public function search(Request $request)
+    {
+
+        if (auth()->check() && auth()->user()->is_admin === true) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
+
+        $search = $request->input('search');
+        $reviews = Review::where('game_name', 'like', "%$search%")->where('is_active', true)->get();
+
+        if ($reviews->isEmpty()) {
+            $isEmpty = 'Er zijn geen games gevonden';
+            return view('reviews', compact('reviews', 'isAdmin', 'isEmpty'));
+        } else {
+            return view('reviews', compact('reviews', 'isAdmin'));
+        }
+
     }
 
 

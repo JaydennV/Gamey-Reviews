@@ -7,12 +7,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-
+// Standaard, dit ziet iedereen
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::post('/reviews/search', [ReviewController::class, 'search'])->name('reviews.search');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-
+// Dit zien ingelogde gebruikers en onder andere admins
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin');
     Route::put('/reviews/{id}', [ReviewController::class, 'updateReview'])->name('reviews.update');

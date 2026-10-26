@@ -32,7 +32,7 @@
 
         @foreach ($reviews as $review)
             <article
-                class="flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200">
+                class="animate-appear transition-appear  flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200">
                 <div class="flex gap-3">
                     <img class="w-auto h-9" src="/images/profileicon.png" alt="Picture of an anonymous profile icon">
                     <p class="text-xl text-base font-semibold text-[#4a4e69]">{{ $review->username }}

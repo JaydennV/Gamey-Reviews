@@ -37,14 +37,23 @@
            href="{{route('reviews', ['genre' => 'Strategy'])}}">Strategy</a>
         <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Racing'])}}">Racing</a>
+        <form method="POST" action="{{ route('reviews.search') }}">
+            @csrf
+            <input type="text" name="search" required placeholder="Search reviews..."
+                   class="bg-[#f2e9e4] text-[#4a4e69] placeholder:text-[#4a4e69] border border-[#4a4e69] rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button type="submit" class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg">Search
+            </button>
+        </form>
     </div>
     <main
         class=" mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-10 sm:grid-cols-3 lg:grid-cols-3">
 
-
+        @if(isset($isEmpty))
+            <p class="text-xl text-gray-500">{{ $isEmpty }}</p>
+        @endif
         @foreach ($reviews as $review)
             <article
-                class="flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200 hover:-translate-y-2 hover:rotate-1">
+                class="animate-appear transition-appear  flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-[#4a4e69] bg-[#f2e9e4] p-7 shadow-[0_8px_0_#4a4e69,0_14px_24px_rgba(34,34,59,0.18)] transition-transform duration-200 hover:-translate-y-2 hover:rotate-1">
                 <div class="flex gap-3">
                     <img class="w-auto h-9" src="/images/profileicon.png" alt="Picture of an anonymous profile icon">
                     <p class="text-xl text-base font-semibold text-[#4a4e69]">{{ $review->username }}
