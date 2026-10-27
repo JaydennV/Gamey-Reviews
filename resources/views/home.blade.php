@@ -1,6 +1,6 @@
 <x-layout name="Home">
     <nav
-        class="flex w-full items-center items-center justify-between bg-[#9a8c98] px-6 py-14 h-20 border-b border-[#4a4e69]">
+        class=" flex w-full items-center items-center justify-between bg-[#9a8c98] px-6 py-14 h-20 border-b border-[#4a4e69]">
 
         <div class="flex items-center justify-center gap-4">
             <a href="{{ route('home') }}" class="flex items-center">
@@ -26,10 +26,14 @@
     </nav>
     <main class="min-h-screen bg-cover bg-center bg-no-repeat"
           style="background-image: url('{{ asset('images/backgroundimgheader.png') }}')">
-        <div class="flex flex-col gap-10 p-6 text-center justify-center text-xl">
-            <h1 class="text-2xl font-bold">Join the biggest game reviewing community!</h1>
-            <p class="pb-3">Millions of people have reviewed before you already, get started today and connect
+        <div class="flex flex-col gap-10 p-6 px-14 mt-8 justify-start text-xl">
+            <h1 class="text-4xl font-bold">Join the biggest game reviewing community!</h1>
+            <p class="text-2xl pb-3">Millions of people have reviewed before you already, get started today and connect
                 with others!</p>
+            <a href="{{route('about')}}"
+               class="inline-block w-40 rounded-md bg-[#4a4e69] px-6 py-3 text-white hover:bg-[#3a3e59]">
+                Learn more!
+            </a>
             <div class="flex gap-5 justify-center items-center">
 
             </div>

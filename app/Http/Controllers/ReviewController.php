@@ -89,8 +89,13 @@ class ReviewController extends Controller
         $action->increment('review_clicked_by_user');
 
         $clickedReview = Review::findOrFail(request()->route('id'));
+        if (auth()->check() && auth()->user()->is_admin === true) {
+            $isAdmin = true;
+        } else {
+            $isAdmin = false;
+        }
 
-        return view('reviews.show', compact('clickedReview'));
+        return view('reviews.show', compact('clickedReview', 'isAdmin'));
     }
 
     public function store(Request $request)

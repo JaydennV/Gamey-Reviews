@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -16,9 +17,11 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 // Dit zien ingelogde gebruikers en onder andere admins
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin');
+
     Route::put('/reviews/{id}', [ReviewController::class, 'updateReview'])->name('reviews.update');
     Route::get('/reviews/create', [ReviewController::class, 'create'])
         ->name('reviews.create');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/myreviews', [ReviewController::class, 'showUserReviews'])->name('reviews.user');
     Route::get('/reviews/{id}', [ReviewController::class, 'showAllReviews'])
@@ -32,9 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/reviews/{id}/status', [ReviewController::class, 'updateStatus'])
         ->name('reviews.status');
     Route::delete('/reviews/admin/{id}', [ReviewController::class, 'adminDelete'])->name('reviews.admindelete');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 require __DIR__ . '/auth.php';

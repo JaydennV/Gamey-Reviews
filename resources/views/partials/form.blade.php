@@ -4,6 +4,9 @@
       name="create-review">
     @csrf
 
+    <h1 class="text-center text-4xl text-[#4a4e69]">Create review</h1>
+
+
     <label for="title">Review title</label>
     <input class="w-full border-2 border-[#4a4e69] px-3 py-2" type="text" placeholder="Write a title for your review..."
            id="title" name="title" required>
