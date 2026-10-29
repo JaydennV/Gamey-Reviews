@@ -22,11 +22,11 @@
                 <thead>
                 <tr class="border-b-2 border-[#4a4e69] text-[#4a4e69]">
                     <th class="w-16 px-3 py-3">ID</th>
-                    <th class="w-40 px-3 py-3">Gebruiker</th>
+                    <th class="w-40 px-3 py-3">User</th>
                     <th class="w-44 px-3 py-3">Game</th>
-                    <th class="w-48 px-3 py-3">Titel</th>
+                    <th class="w-48 px-3 py-3">Title</th>
                     <th class="px-3 py-3">Review</th>
-                    <th class="w-28 px-3 py-3">Actie</th>
+                    <th class="w-28 px-3 py-3">Action</th>
                 </tr>
                 </thead>
 
@@ -65,8 +65,8 @@
                                     >
                                     <span class="slider"></span>
                                     <span class="status">
-            <span class="active">Actief</span>
-            <span class="inactive">Verborgen</span>
+            <span class="active">Active</span>
+            <span class="inactive">Hidden</span>
         </span>
                                 </label>
                             </form>

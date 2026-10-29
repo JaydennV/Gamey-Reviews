@@ -14,10 +14,14 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+            'comment_content' => ['required', 'string', 'max:300', 'min:3']
+        ]);
         Comment::create([
             'user_id' => auth()->id(),
             'review_id' => $request->review_id,
-            'content' => $request->comment_content
+            'content' => $validated['comment_content']
         ]);
 
         return redirect(route('reviews.show', $request->review_id));

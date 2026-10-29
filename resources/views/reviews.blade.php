@@ -37,9 +37,12 @@
            href="{{route('reviews', ['genre' => 'Strategy'])}}">Strategy</a>
         <a class="bg-[#9a8c98] hover:bg-[#8a7c88] hover:scale-105 text-white py-2 px-4 rounded-lg"
            href="{{route('reviews', ['genre' => 'Racing'])}}">Racing</a>
-        <form method="POST" action="{{ route('reviews.search') }}">
+        <form method="GET" action="{{ route('reviews') }}">
             @csrf
-            <input type="text" name="search" required placeholder="Search reviews..."
+            @if(request('genre'))
+                <input type="hidden" name="genre" value="{{request('genre')}}">
+            @endif
+            <input type="text" name="search" value="{{request('search')}}" required placeholder="Search reviews..."
                    class="bg-[#f2e9e4] text-[#4a4e69] placeholder:text-[#4a4e69] border border-[#4a4e69] rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <button type="submit" class="bg-[#9a8c98] hover:bg-[#8a7c88] text-white py-2 px-4 rounded-lg">Search
             </button>

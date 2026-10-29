@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 // Standaard, dit ziet iedereen
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
-Route::post('/reviews/search', [ReviewController::class, 'search'])->name('reviews.search');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Dit zien ingelogde gebruikers en onder andere admins

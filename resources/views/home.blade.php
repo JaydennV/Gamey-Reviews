@@ -31,7 +31,7 @@
             style="background-image: url('{{ asset('images/backgroundimgheader.png') }}')"
         ></div>
         <div class="animate-appear flex flex-col gap-10 p-6 px-14 mt-8 justify-start text-xl">
-            <h1 class="text-4xl w-90 font-bold">Giving you the best
+            <h1 class="text-4xl font-caveat w-90 font-bold">Giving you the best
                 <br>
                 game reviewing experience.</h1>
             <p class="text-2xl w-92 pb-3">Gamey was created to provide users with an unique game reviewing experience.

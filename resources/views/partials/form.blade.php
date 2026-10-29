@@ -9,22 +9,37 @@
 
     <label for="title">Review title</label>
     <input class="w-full border-2 border-[#4a4e69] px-3 py-2" type="text" placeholder="Write a title for your review..."
-           id="title" name="title" required>
+           id="title" name="title" value="{{ old('title') }}" required>
+    @error('title')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
     <label for="text">Text</label>
     <textarea class="w-full border-2 border-[#4a4e69] px-3 py-2" id="text" name="text"
-              placeholder="Write your review here..." required></textarea>
+              placeholder="Write your review here..." required>{{ old('text') }}</textarea>
+    @error('text')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
 
     <label for="price">Price</label>
     <input class="w-full border-2 border-[#4a4e69] px-3 py-2" type="number" id="price" placeholder="Enter the price..."
-           name="price" step="0.01" required>
+           name="price" step="0.01" value="{{ old('price') }}" required>
+    @error('price')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
 
     <label for="game_name">Game</label>
     <input class="w-full border-2 border-[#4a4e69] px-3 py-2" type="text" placeholder="Enter the game name..."
-           id="game_name" name="game_name" required>
+           id="game_name" name="game_name" value="{{ old('game_name') }}" required>
+    @error('game_name')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
 
     <label for="genre">Genre</label>
     <input class="w-full border-2 border-[#4a4e69] px-3 py-2" type="text" placeholder="Enter the genre..." id="genre"
-           name="genre" required>
+           name="genre" value="{{ old('genre') }}" required>
+    @error('genre')
+    <p class="text-red-500">{{ $message }}</p>
+    @enderror
     <div class="flex justify-center items-center">
 
 

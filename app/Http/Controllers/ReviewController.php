@@ -20,7 +20,11 @@ class ReviewController extends Controller
             $isAdmin = false;
         }
 
-        if (request()->has('genre')) {
+        if (request()->has('search') && request()->has('genre')) {
+            $reviews = Review::where('genre', request('genre'))->where('game_name', 'LIKE', '%' . request('search') . '%')->where('is_active', true)->get();
+        } elseif (request()->has('search')) {
+            $reviews = Review::where('game_name', 'like', '%' . request('search') . '%')->where('is_active', true)->get();
+        } elseif (request()->has('genre')) {
             $reviews = Review::where('genre', request('genre'))->where('is_active', true)->get();
         } else {
             $reviews = Review::where('is_active', true)->get();
@@ -100,12 +104,20 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255', 'min:1'],
+            'text' => ['required', 'string', 'max:10000', 'min:30'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'game_name' => ['required', 'string', 'max:255'],
+            'genre' => ['required', 'string', 'max:100'],
+        ]);
+
         Review::create([
-            'title' => request('title'),
-            'text' => request('text'),
-            'price' => request('price'),
-            'game_name' => request('game_name'),
-            'genre' => request('genre'),
+            'title' => $validated['title'],
+            'text' => $validated['text'],
+            'price' => $validated['price'],
+            'game_name' => $validated['game_name'],
+            'genre' => $validated['genre'],
             'user_id' => auth()->id(),
             'username' => auth()->user()->name,
         ]);
@@ -115,16 +127,25 @@ class ReviewController extends Controller
 
     public function updateReview(Request $request, string $id)
     {
-        if (auth()->user()->reviews()->find($id)) {
-            Review::where('id', $id)->update([
-                'title' => request('title'),
-                'text' => request('text'),
-                'price' => request('price'),
-                'game_name' => request('game_name'),
-                'genre' => request('genre'),
-            ]);
-            return redirect()->route('reviews.user');
-        }
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255', 'min:1'],
+            'text' => ['required', 'string', 'max:10000', 'min:30'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'game_name' => ['required', 'string', 'max:255'],
+            'genre' => ['required', 'string', 'max:100'],
+        ]);
+
+        $review = auth()->user()->reviews()->findOrFail($id);
+
+        $review->update([
+            'title' => $validated['title'],
+            'text' => $validated['text'],
+            'price' => $validated['price'],
+            'game_name' => $validated['game_name'],
+            'genre' => $validated['genre'],
+        ]);
+
+        return redirect()->route('reviews.user');
     }
 
     public function adminDelete(string $id)
